@@ -17,7 +17,6 @@ class Login extends Component {
             username: '',
             password: ''
         };
-
         // Binding
         this.onPressSignInButton = this.onPressSignInButton.bind(this);
         this.onPressForgotPasswordButton = this.onPressForgotPasswordButton.bind(this);
@@ -32,6 +31,7 @@ class Login extends Component {
         return (
             <View style={styles.container}>
                 <KeyboardAwareScrollView
+                    showsVerticalScrollIndicator={false}
                     keyboardDismissMode="interactive"
                     keyboardShouldPersistTaps={true}
                     getTextInputRefs={() => {
@@ -45,7 +45,7 @@ class Login extends Component {
                         this._firstNameTI = r;
                     }}
                         returnKeyType={'next'}
-                        onSubmitEditing={(event) => this._lastNameTI.focus()}/>
+                        onSubmitEditing={(event) => this._notesTI.focus()}/>
                     <TextInput
                         style={styles.textInput}
                         placeholder={'Password'}
@@ -54,12 +54,16 @@ class Login extends Component {
                         this._notesTI = r;
                     }}
                         returnKeyType={'go'}/>
-                    <TouchableHighlight onPress={this.onPressSignInButton}>
+                    <TouchableHighlight 
+                    underlayColor='#FFFFFF'
+                    onPress={this.onPressSignInButton}>
                         <View style={styles.loginBtn}>
                         <Text style={styles.loginBtnTxt}>Sing In</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={this.onPressForgotPasswordButton}>
+                    <TouchableHighlight 
+                    underlayColor='#FFFFFF'
+                    onPress={this.onPressForgotPasswordButton}>
                         <View style={styles.forgotView}>
                         <Text style={styles.forgotTxt}>Forgot password?</Text>
                         </View>
@@ -76,12 +80,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',
-        paddingTop: 20
+        padding: 20
     },
     textInput: {
         height: 47,
-        width: 300,
-        marginVertical: 10,
+        marginVertical: 5,
         paddingLeft: 10,
         fontSize: 17,
         lineHeight: 43,
@@ -89,18 +92,19 @@ const styles = StyleSheet.create({
         borderWidth: .2,
         borderRadius: 4
     },
-    logoImage: {
-        width: 300,
-        height: 300
+    logoImage: {        
+        height: 200,
+        alignSelf:'center'
     },
     loginBtn: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 300,
         height: 47,
-        marginTop: 20,
-        backgroundColor: '#19b99a'
+        marginTop: 10,
+        backgroundColor: '#19b99a',
+        borderWidth: 0,
+        borderRadius: 4
     },
     loginBtnTxt: {
         fontSize: 20,
@@ -112,9 +116,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'flex-end',
         justifyContent: 'center',
-        width: 300,
         height: 47,
-        marginTop: 20,
+        marginTop: 15,
         backgroundColor: '#FFFFFF'
     },
     forgotTxt: {
